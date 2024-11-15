@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type {Property} from "acorn";
-import type {Extra} from "~/util/types";
+import type {Extra, Property} from "~/util/types";
 
 let list1: Property[] = [
   {
@@ -398,17 +397,17 @@ function prev() {
   if (currentIndex.value === 0) {
     if (currentListIndex.value === 0) {
       currentListIndex.value = 2;
-      currentIndex.value = list3.value.length - 1;
+      currentIndex.value = list3.length - 1;
       return;
     }
     if (currentListIndex.value === 2) {
       currentListIndex.value = 1;
-      currentIndex.value = list2.value.length - 1;
+      currentIndex.value = list2.length - 1;
       return;
     }
     if (currentListIndex.value === 1) {
       currentListIndex.value = 0;
-      currentIndex.value = list1.value.length - 1;
+      currentIndex.value = list1.length - 1;
       return;
     }
   }
