@@ -3,11 +3,13 @@
 </script>
 
 <template>
-  <div class="circle">
-    <button class="btn top-btn"></button>
-    <button class="btn left-btn"></button>
-    <button class="btn right-btn"></button>
-    <button class="btn bottom-btn"></button>
+  <div class="circle-container">
+    <div class="circle">
+      <button class="btn top-btn"></button>
+      <button class="btn left-btn"></button>
+      <button class="btn right-btn"></button>
+      <button class="btn bottom-btn"></button>
+    </div>
   </div>
 </template>
 

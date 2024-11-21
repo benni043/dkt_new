@@ -1,413 +1,27 @@
 <script setup lang="ts">
-import type {Extra, Property} from "~/util/types";
 
-let list1: Property[] = [
-  {
-    id: 39,
-    color: "dark_blue",
-    state: "Bregenz",
-    street: "Arlbergstraße",
-    rent: 8,
-    rent1House: 40,
-    rent2Houses: 100,
-    rent3Houses: 300,
-    rent4Houses: 450,
-    rent1Hotel: 600,
-    purchasePrice: 120,
-    housePrice: 50,
-    hotelPrice: 50
-  },
-  {
-    id: 40,
-    color: "dark_blue",
-    state: "Bregenz",
-    street: "Rathausstraße",
-    rent: 14,
-    rent1House: 70,
-    rent2Houses: 210,
-    rent3Houses: 500,
-    rent4Houses: 700,
-    rent1Hotel: 850,
-    purchasePrice: 180,
-    housePrice: 100,
-    hotelPrice: 100
-  },
-  {
-    id: 2,
-    color: "dark_blue",
-    state: "Bregenz",
-    street: "Amtsplatz",
-    rent: 20,
-    rent1House: 100,
-    rent2Houses: 300,
-    rent3Houses: 600,
-    rent4Houses: 750,
-    rent1Hotel: 950,
-    purchasePrice: 220,
-    housePrice: 160,
-    hotelPrice: 160
-  },
-  {
-    id: 5,
-    color: "dark_yellow",
-    state: "Graz",
-    street: "Murplatz",
-    rent: 30,
-    rent1House: 150,
-    rent2Houses: 450,
-    rent3Houses: 850,
-    rent4Houses: 1050,
-    rent1Hotel: 1200,
-    purchasePrice: 300,
-    housePrice: 200,
-    hotelPrice: 200
-  },
-  {
-    id: 6,
-    color: "dark_yellow",
-    state: "Graz",
-    street: "Annenstraße",
-    rent: 24,
-    rent1House: 110,
-    rent2Houses: 330,
-    rent3Houses: 700,
-    rent4Houses: 900,
-    rent1Hotel: 1050,
-    purchasePrice: 250,
-    housePrice: 150,
-    hotelPrice: 140
-  },
-  {
-    id: 7,
-    color: "dark_yellow",
-    state: "Graz",
-    street: "Joaneumring",
-    rent: 20,
-    rent1House: 100,
-    rent2Houses: 300,
-    rent3Houses: 600,
-    rent4Houses: 750,
-    rent1Hotel: 950,
-    purchasePrice: 220,
-    housePrice: 130,
-    hotelPrice: 130
-  },
-  {
-    id: 12,
-    color: "pink",
-    state: "Eisenstadt",
-    street: "Schlossgrund",
-    rent: 20,
-    rent1House: 100,
-    rent2Houses: 300,
-    rent3Houses: 600,
-    rent4Houses: 750,
-    rent1Hotel: 950,
-    purchasePrice: 220,
-    housePrice: 160,
-    hotelPrice: 160
-  },
-  {
-    id: 10,
-    color: "pink",
-    state: "Eisenstadt",
-    street: "Joseph-Haydn-Gasse",
-    rent: 6,
-    rent1House: 30,
-    rent2Houses: 90,
-    rent3Houses: 260,
-    rent4Houses: 380,
-    rent1Hotel: 550,
-    purchasePrice: 100,
-    housePrice: 50,
-    hotelPrice: 50
-  },
-  {
-    id: 22,
-    color: "dark_green",
-    state: "Linz",
-    street: "Museumsstraße",
-    rent: 20,
-    rent1House: 100,
-    rent2Houses: 300,
-    rent3Houses: 600,
-    rent4Houses: 750,
-    rent1Hotel: 950,
-    purchasePrice: 220,
-    housePrice: 160,
-    hotelPrice: 160
-  },
-  {
-    id: 20,
-    color: "dark_green",
-    state: "Linz",
-    street: "Stifterstraße",
-    rent: 14,
-    rent1House: 70,
-    rent2Houses: 210,
-    rent3Houses: 500,
-    rent4Houses: 700,
-    rent1Hotel: 850,
-    purchasePrice: 180,
-    housePrice: 100,
-    hotelPrice: 100
-  },
-  {
-    id: 19,
-    color: "dark_green",
-    state: "Linz",
-    street: "Landstaße",
-    rent: 30,
-    rent1House: 150,
-    rent2Houses: 450,
-    rent3Houses: 850,
-    rent4Houses: 1050,
-    rent1Hotel: 1200,
-    purchasePrice: 300,
-    housePrice: 200,
-    hotelPrice: 200
-  },
-  {
-    id: 15,
-    color: "red",
-    state: "Wien",
-    street: "Kärntnerstraße",
-    rent: 50,
-    rent1House: 200,
-    rent2Houses: 600,
-    rent3Houses: 1300,
-    rent4Houses: 1600,
-    rent1Hotel: 1950,
-    purchasePrice: 380,
-    housePrice: 220,
-    hotelPrice: 220
-  },
-  {
-    id: 17,
-    color: "red",
-    state: "Wien",
-    street: "Kobenzlstraße",
-    rent: 24,
-    rent1House: 110,
-    rent2Houses: 330,
-    rent3Houses: 700,
-    rent4Houses: 900,
-    rent1Hotel: 1050,
-    purchasePrice: 250,
-    housePrice: 150,
-    hotelPrice: 140
-  },
-  {
-    id: 16,
-    color: "red",
-    state: "Wien",
-    street: "Mariahilfer Straße",
-    rent: 40,
-    rent1House: 170,
-    rent2Houses: 500,
-    rent3Houses: 1000,
-    rent4Houses: 1300,
-    rent1Hotel: 1600,
-    purchasePrice: 350,
-    housePrice: 220,
-    hotelPrice: 220
-  },
-  {
-    id: 26,
-    color: "light_yellow",
-    state: "Salzburg",
-    street: "Westbahnstraße",
-    rent: 22,
-    rent1House: 100,
-    rent2Houses: 320,
-    rent3Houses: 680,
-    rent4Houses: 850,
-    rent1Hotel: 1000,
-    purchasePrice: 240,
-    housePrice: 140,
-    hotelPrice: 130
-  },
-  {
-    id: 27,
-    color: "light_yellow",
-    state: "Salzburg",
-    street: "Universitätsplatz",
-    rent: 24,
-    rent1House: 110,
-    rent2Houses: 330,
-    rent3Houses: 700,
-    rent4Houses: 900,
-    rent1Hotel: 1050,
-    purchasePrice: 250,
-    housePrice: 150,
-    hotelPrice: 140
-  },
-  {
-    id: 25,
-    color: "light_yellow",
-    state: "Salzburg",
-    street: "Mirabellplatz",
-    rent: 24,
-    rent1House: 110,
-    rent2Houses: 330,
-    rent3Houses: 700,
-    rent4Houses: 900,
-    rent1Hotel: 1050,
-    purchasePrice: 250,
-    housePrice: 150,
-    hotelPrice: 140
-  },
-  {
-    id: 30,
-    color: "orange",
-    state: "Klagenfurt",
-    street: "Villacherstraße",
-    rent: 16,
-    rent1House: 80,
-    rent2Houses: 230,
-    rent3Houses: 550,
-    rent4Houses: 710,
-    rent1Hotel: 900,
-    purchasePrice: 200,
-    housePrice: 110,
-    hotelPrice: 110
-  },
-  {
-    id: 32,
-    color: "orange",
-    state: "Klagenfurt",
-    street: "Alter Platz",
-    rent: 18,
-    rent1House: 90,
-    rent2Houses: 250,
-    rent3Houses: 600,
-    rent4Houses: 730,
-    rent1Hotel: 930,
-    purchasePrice: 210,
-    housePrice: 120,
-    hotelPrice: 150
-  },
-  {
-    id: 29,
-    color: "orange",
-    state: "Klagenfurt",
-    street: "Burggasse",
-    rent: 10,
-    rent1House: 50,
-    rent2Houses: 150,
-    rent3Houses: 450,
-    rent4Houses: 600,
-    rent1Hotel: 730,
-    purchasePrice: 140,
-    housePrice: 100,
-    hotelPrice: 100
-  },
-  {
-    id: 36,
-    color: "light_blue",
-    state: "Innsbruck",
-    street: "Andreas-Hofer-Straße",
-    rent: 24,
-    rent1House: 110,
-    rent2Houses: 330,
-    rent3Houses: 700,
-    rent4Houses: 900,
-    rent1Hotel: 1050,
-    purchasePrice: 250,
-    housePrice: 150,
-    hotelPrice: 140
-  },
-  {
-    id: 35,
-    color: "light_blue",
-    state: "Innsbruck",
-    street: "Maria-Theresien-Straße",
-    rent: 30,
-    rent1House: 150,
-    rent2Houses: 450,
-    rent3Houses: 850,
-    rent4Houses: 1050,
-    rent1Hotel: 1200,
-    purchasePrice: 300,
-    housePrice: 200,
-    hotelPrice: 200
-  },
-  {
-    id: 37,
-    color: "light_blue",
-    state: "Innsbruck",
-    street: "Boznerplatz",
-    rent: 30,
-    rent1House: 150,
-    rent2Houses: 450,
-    rent3Houses: 850,
-    rent4Houses: 1050,
-    rent1Hotel: 1200,
-    purchasePrice: 300,
-    housePrice: 300,
-    hotelPrice: 200
-  },
-];
-
-let list2: Extra[] = [
-  {
-    id: 18,
-    type: "Linie",
-    name: "Wien-Innsbruck",
-  },
-  {
-    id: 8,
-    type: "Linie",
-    name: "Wien-Graz",
-  },
-  {
-    id: 24,
-    type: "Linie",
-    name: "Glocknerstraße",
-  },
-  {
-    id: 13,
-    type: "Linie",
-    name: "Wien-Budapest",
-  }
-];
-
-let list3: Extra[] = [
-  {
-    id: 34,
-    type: "Betrieb",
-    name: "Flugl. Wien-Venedig",
-  },
-  {
-    id: 14,
-    type: "Betrieb",
-    name: "Seilbahn",
-  },
-  {
-    id: 4,
-    type: "Betrieb",
-    name: "Elektr. Kraftwerk",
-  }
-]
+import {useCardStore} from "~/stores/cards";
 
 let currentListIndex: Ref<number> = ref(0);
 let currentIndex: Ref<number> = ref(0);
+
+const store = useCardStore();
 
 function prev() {
   if (currentIndex.value === 0) {
     if (currentListIndex.value === 0) {
       currentListIndex.value = 2;
-      currentIndex.value = list3.length - 1;
+      currentIndex.value = store.lines.length - 1;
       return;
     }
     if (currentListIndex.value === 2) {
       currentListIndex.value = 1;
-      currentIndex.value = list2.length - 1;
+      currentIndex.value = store.companies.length - 1;
       return;
     }
     if (currentListIndex.value === 1) {
       currentListIndex.value = 0;
-      currentIndex.value = list1.length - 1;
+      currentIndex.value = store.properties.length - 1;
       return;
     }
   }
@@ -416,19 +30,19 @@ function prev() {
 }
 
 function next() {
-  if ((currentIndex.value + 1) == list1.length) {
+  if ((currentIndex.value + 1) == store.properties.length) {
     currentIndex.value = 0;
     currentListIndex.value = 1;
     return
   }
 
-  if (currentListIndex.value == 1 && ((currentIndex.value + 1) == list2.length)) {
+  if (currentListIndex.value == 1 && ((currentIndex.value + 1) == store.companies.length)) {
     currentIndex.value = 0;
     currentListIndex.value = 2;
     return
   }
 
-  if (currentListIndex.value == 2 && ((currentIndex.value + 1) == list3.length)) {
+  if (currentListIndex.value == 2 && ((currentIndex.value + 1) == store.lines.length)) {
     currentIndex.value = 0;
     currentListIndex.value = 0;
     return
@@ -443,9 +57,9 @@ function next() {
     <button @click="prev()" class="arrow left">&lt;</button>
 
     <div class="carousel-wrapper">
-      <CardsProperty v-if="currentListIndex == 0" :card="list1[currentIndex]"></CardsProperty>
-      <CardsCompany v-if="currentListIndex == 1" :card="list2[currentIndex]"></CardsCompany>
-      <CardsLine v-if="currentListIndex == 2" :card="list3[currentIndex]"></CardsLine>
+      <CardsProperty v-if="currentListIndex == 0" :card="store.properties[currentIndex]"></CardsProperty>
+      <CardsCompany v-if="currentListIndex == 1" :card="store.companies[currentIndex]"></CardsCompany>
+      <CardsLine v-if="currentListIndex == 2" :card="store.lines[currentIndex]"></CardsLine>
     </div>
 
     <button @click="next()" class="arrow right">&gt;</button>

@@ -20,6 +20,12 @@ export interface Extra {
     name: string;
 }
 
+export interface Cards {
+    properties: Property[],
+    companies: Extra[];
+    lines: Extra[];
+}
+
 export interface Game {
     player1: Player;
     player2: Player;
