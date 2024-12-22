@@ -3,27 +3,24 @@
 </script>
 
 <template>
-  <div class="circle">
-    <button class="btn top-btn"></button>
-    <button class="btn left-btn"></button>
-    <button class="btn right-btn"></button>
-    <button class="btn bottom-btn"></button>
+  <div class="circle-container">
+    <div class="circle">
+      <button class="btn top-btn"></button>
+      <button class="btn left-btn"></button>
+      <button class="btn right-btn"></button>
+      <button class="btn bottom-btn"></button>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.circle-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
 .circle {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 50vw;
   height: 50vw;
-  border-radius: 50%;
   background-image: url("/public/dkt(1).png");
   background-position: center;
   background-repeat: no-repeat;
@@ -34,7 +31,6 @@
   width: 5vw;
   height: 5vw;
   border-radius: 50%;
-  border: none;
   cursor: pointer;
 }
 
