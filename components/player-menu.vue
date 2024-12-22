@@ -1,10 +1,15 @@
 <script setup lang="ts">
 
-import type {Color} from "~/util/types";
+import type {Color, Player} from "~/util/types";
+import {useGameStore} from "~/stores/gameStore";
 
-defineProps<{
+let props = defineProps<{
   color: Color
 }>();
+
+const gameStore = useGameStore();
+
+let player: Player | undefined;
 
 function navigateToMainMenu() {
   const router = useRouter();
@@ -14,11 +19,34 @@ function navigateToMainMenu() {
   })
 }
 
+function completedRound() {
+  gameStore.updatePlayerMoney(props.color, 200);
+}
+
+switch (props.color) {
+  case "blue":
+    player = gameStore.game?.playerBlue;
+    break;
+  case "yellow":
+    player = gameStore.game?.playerYellow;
+    break;
+  case "red":
+    player = gameStore.game?.playerRed;
+    break;
+  case "green":
+    player = gameStore.game?.playerGreen;
+    break;
+  default:
+    break;
+}
+
 </script>
 
 <template>
   <div>
     <div class="color-circle" :style="{'background-color': color}"></div>
+
+    <h2>{{ player?.money }} $</h2>
 
     <div id="menu">
       <button @click="navigateToMainMenu()" class="gray-button">Zurück</button>
@@ -32,7 +60,7 @@ function navigateToMainMenu() {
       <div></div>
       <div></div>
 
-      <button class="green-button">Über Los ziehen</button>
+      <button @click="completedRound()" class="green-button">Über Los ziehen</button>
       <button class="green-button">Aus dem Gefängnis</button>
       <button class="green-button">Vermögensabgabe</button>
       <button class="green-button">Gehe ins Gefängnis</button>

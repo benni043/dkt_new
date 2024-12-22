@@ -21,10 +21,10 @@ export interface Extra {
 }
 
 export interface Game {
-    player1: Player;
-    player2: Player;
-    player3: Player | undefined;
-    player4: Player | undefined;
+    playerBlue: Player | undefined;
+    playerYellow: Player | undefined;
+    playerRed: Player | undefined;
+    playerGreen: Player | undefined;
     cards: {
         properties: Property[];
         companies: Extra[];
