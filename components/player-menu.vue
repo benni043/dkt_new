@@ -2,7 +2,17 @@
 
 import type {Color} from "~/util/types";
 
-let color: Color = "red";
+defineProps<{
+  color: Color
+}>();
+
+function navigateToMainMenu() {
+  const router = useRouter();
+
+  router.push({
+    path: `/`,
+  })
+}
 
 </script>
 
@@ -11,7 +21,7 @@ let color: Color = "red";
     <div class="color-circle" :style="{'background-color': color}"></div>
 
     <div id="menu">
-      <button class="gray-button">Zurück</button>
+      <button @click="navigateToMainMenu()" class="gray-button">Zurück</button>
       <div></div>
 
       <button>Grundstück kaufen</button>

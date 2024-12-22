@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Extra, Property} from "~/util/types";
+import type {Property} from "~/util/types";
 
 const props = defineProps<{
   card: Property

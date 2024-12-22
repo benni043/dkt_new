@@ -1,14 +1,24 @@
 <script setup lang="ts">
 
+import type {Color} from "~/util/types";
+
+function navigateToPlayer(color: Color) {
+  const router = useRouter();
+
+  router.push({
+    path: `/player/${color}`,
+  })
+}
+
 </script>
 
 <template>
   <div class="circle-container">
     <div class="circle">
-      <button class="btn top-btn"></button>
-      <button class="btn left-btn"></button>
-      <button class="btn right-btn"></button>
-      <button class="btn bottom-btn"></button>
+      <button @click="navigateToPlayer('blue')" class="btn top-btn"></button>
+      <button @click="navigateToPlayer('yellow')" class="btn left-btn"></button>
+      <button @click="navigateToPlayer('red')" class="btn right-btn"></button>
+      <button @click="navigateToPlayer('green')" class="btn bottom-btn"></button>
     </div>
   </div>
 </template>
