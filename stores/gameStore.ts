@@ -1,7 +1,8 @@
-import type {Color, Game, Player} from "~/util/types";
+import type {Color, Extra, Game, InGameProperty, Player, PropertyType} from "~/util/types";
 import {useCompanyCardStore} from "~/stores/companyCardStore";
 import {useLineCardStore} from "~/stores/lineCardStore";
 import {usePropertyCardStore} from "~/stores/propertyCardStore";
+import {sw} from "cronstrue/dist/i18n/locales/sw";
 
 interface GameStoreState {
     game: Game;
@@ -59,6 +60,64 @@ export const useGameStore = defineStore("game", {
                     break;
                 case "green":
                     this.game.playerGreen!.money += amount;
+                    break;
+                default:
+                    break;
+            }
+        },
+        addProperty(property: any, propertyType: PropertyType, color: Color) {
+            switch (color) {
+                case "blue":
+                    switch (propertyType) {
+                        case "property":
+                            this.game.playerBlue!.cards.properties.push(property!)
+                            break;
+                        case "line":
+                            this.game.playerBlue!.cards.lines.push(property!)
+                            break;
+                        case "company":
+                            this.game.playerBlue!.cards.companies.push(property!)
+                            break;
+                    }
+                    break;
+                case "yellow":
+                    switch (propertyType) {
+                        case "property":
+                            this.game.playerBlue!.cards.properties.push(property!)
+                            break;
+                        case "line":
+                            this.game.playerBlue!.cards.lines.push(property!)
+                            break;
+                        case "company":
+                            this.game.playerBlue!.cards.companies.push(property!)
+                            break;
+                    }
+                    break;
+                case "red":
+                    switch (propertyType) {
+                        case "property":
+                            this.game.playerBlue!.cards.properties.push(property!)
+                            break;
+                        case "line":
+                            this.game.playerBlue!.cards.lines.push(property!)
+                            break;
+                        case "company":
+                            this.game.playerBlue!.cards.companies.push(property!)
+                            break;
+                    }
+                    break;
+                case "green":
+                    switch (propertyType) {
+                        case "property":
+                            this.game.playerBlue!.cards.properties.push(property!)
+                            break;
+                        case "line":
+                            this.game.playerBlue!.cards.lines.push(property!)
+                            break;
+                        case "company":
+                            this.game.playerBlue!.cards.companies.push(property!)
+                            break;
+                    }
                     break;
                 default:
                     break;

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {useCompanyCardStore} from "~/stores/companyCardStore";
-import {useLineCardStore} from "~/stores/lineCardStore";
-import {usePropertyCardStore} from "~/stores/propertyCardStore";
+import type {Extra, Property} from "~/util/types";
 
-const companyCardStore = useCompanyCardStore();
-const lineCardStore = useLineCardStore();
-const propertyCardStore = usePropertyCardStore();
+let props = defineProps<{
+  companyList: Extra[],
+  lineList: Extra[],
+  propertyList: Property[],
+}>()
 
 let currentListIndex: Ref<number> = ref(0);
 let currentIndex: Ref<number> = ref(0);
@@ -14,17 +14,17 @@ function prev() {
   if (currentIndex.value === 0) {
     if (currentListIndex.value === 0) {
       currentListIndex.value = 2;
-      currentIndex.value = companyCardStore.cards.length - 1;
+      currentIndex.value = props.companyList.length - 1;
       return;
     }
     if (currentListIndex.value === 2) {
       currentListIndex.value = 1;
-      currentIndex.value = lineCardStore.cards.length - 1;
+      currentIndex.value = props.lineList.length - 1;
       return;
     }
     if (currentListIndex.value === 1) {
       currentListIndex.value = 0;
-      currentIndex.value = propertyCardStore.cards.length - 1;
+      currentIndex.value = props.propertyList.length - 1;
       return;
     }
   }
@@ -33,19 +33,19 @@ function prev() {
 }
 
 function next() {
-  if ((currentIndex.value + 1) == propertyCardStore.cards.length) {
+  if ((currentIndex.value + 1) == props.propertyList.length) {
     currentIndex.value = 0;
     currentListIndex.value = 1;
     return
   }
 
-  if (currentListIndex.value == 1 && ((currentIndex.value + 1) == lineCardStore.cards.length)) {
+  if (currentListIndex.value == 1 && ((currentIndex.value + 1) == props.lineList.length)) {
     currentIndex.value = 0;
     currentListIndex.value = 2;
     return
   }
 
-  if (currentListIndex.value == 2 && ((currentIndex.value + 1) == companyCardStore.cards.length)) {
+  if (currentListIndex.value == 2 && ((currentIndex.value + 1) == props.companyList.length)) {
     currentIndex.value = 0;
     currentListIndex.value = 0;
     return
@@ -60,9 +60,9 @@ function next() {
     <button @click="prev()" class="arrow left">&lt;</button>
 
     <div class="carousel-wrapper">
-      <CardsProperty v-if="currentListIndex == 0" :card="propertyCardStore.cards[currentIndex]"></CardsProperty>
-      <CardsCompany v-if="currentListIndex == 1" :card="lineCardStore.cards[currentIndex]"></CardsCompany>
-      <CardsLine v-if="currentListIndex == 2" :card="companyCardStore.cards[currentIndex]"></CardsLine>
+      <CardsProperty v-if="currentListIndex == 0" :card="propertyList[currentIndex]"></CardsProperty>
+      <CardsCompany v-if="currentListIndex == 1" :card="lineList[currentIndex]"></CardsCompany>
+      <CardsLine v-if="currentListIndex == 2" :card="companyList[currentIndex]"></CardsLine>
     </div>
 
     <button @click="next()" class="arrow right">&gt;</button>

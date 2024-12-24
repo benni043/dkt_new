@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {Extra} from "~/util/types";
 
-const props = defineProps<{
+defineProps<{
   card: Extra
 }>();
 </script>

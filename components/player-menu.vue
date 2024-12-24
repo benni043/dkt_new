@@ -2,6 +2,7 @@
 
 import type {Color, Player} from "~/util/types";
 import {useGameStore} from "~/stores/gameStore";
+import {navigateToMainMenu} from "~/util/routing";
 
 let props = defineProps<{
   color: Color
@@ -11,11 +12,11 @@ const gameStore = useGameStore();
 
 let player: Player | undefined;
 
-function navigateToMainMenu() {
+function navigateToGetProperty() {
   const router = useRouter();
 
   router.push({
-    path: `/`,
+    path: `/player/${player?.color}/get-property`,
   })
 }
 
@@ -52,7 +53,7 @@ switch (props.color) {
       <button @click="navigateToMainMenu()" class="gray-button">Zurück</button>
       <div></div>
 
-      <button>Grundstück kaufen</button>
+      <button @click="navigateToGetProperty()">Grundstück kaufen</button>
       <button>Miete bezahlen</button>
       <button>Haus bauen</button>
       <button>Hotel bauen</button>

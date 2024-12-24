@@ -52,4 +52,6 @@ export interface InGameProperty {
     hotelCount: number;
 }
 
+export type PropertyType = "property" | "line" | "company";
+
 export type Color = "green" | "yellow" | "red" | "blue";
