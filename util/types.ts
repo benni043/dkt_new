@@ -21,10 +21,7 @@ export interface Extra {
 }
 
 export interface Game {
-    playerBlue: Player | undefined;
-    playerYellow: Player | undefined;
-    playerRed: Player | undefined;
-    playerGreen: Player | undefined;
+    players: Map<Color, Player>;
     cards: {
         properties: Property[];
         companies: Extra[];
@@ -50,6 +47,12 @@ export interface InGameProperty {
     property: Property;
     houseCount: number;
     hotelCount: number;
+}
+
+export interface CarouselEventData {
+    currentIndex: number,
+    value: any,
+    type: PropertyType
 }
 
 export type PropertyType = "property" | "line" | "company";

@@ -10,7 +10,7 @@ let props = defineProps<{
 
 const gameStore = useGameStore();
 
-let player: Player | undefined;
+let player: Player = gameStore.game.players.get(props.color)!;
 
 function navigateToGetProperty() {
   const router = useRouter();
@@ -22,23 +22,6 @@ function navigateToGetProperty() {
 
 function completedRound() {
   gameStore.updatePlayerMoney(props.color, 200);
-}
-
-switch (props.color) {
-  case "blue":
-    player = gameStore.game?.playerBlue;
-    break;
-  case "yellow":
-    player = gameStore.game?.playerYellow;
-    break;
-  case "red":
-    player = gameStore.game?.playerRed;
-    break;
-  case "green":
-    player = gameStore.game?.playerGreen;
-    break;
-  default:
-    break;
 }
 
 </script>

@@ -1,8 +1,7 @@
-import type {Color, Extra, Game, InGameProperty, Player, PropertyType} from "~/util/types";
+import type {Color, Game, Player, PropertyType} from "~/util/types";
 import {useCompanyCardStore} from "~/stores/companyCardStore";
 import {useLineCardStore} from "~/stores/lineCardStore";
 import {usePropertyCardStore} from "~/stores/propertyCardStore";
-import {sw} from "cronstrue/dist/i18n/locales/sw";
 
 interface GameStoreState {
     game: Game;
@@ -36,10 +35,7 @@ let game: Game = {
         lines: lineCardStore.cards,
         properties: propertyCardStore.cards
     },
-    playerBlue: player1,
-    playerYellow: player2,
-    playerRed: undefined,
-    playerGreen: undefined
+    players: new Map<Color, Player>([["blue", player1], ["red", player1]]),
 };
 
 export const useGameStore = defineStore("game", {
@@ -48,78 +44,21 @@ export const useGameStore = defineStore("game", {
     }),
     actions: {
         updatePlayerMoney(color: Color, amount: number) {
-            switch (color) {
-                case "blue":
-                    this.game.playerBlue!.money += amount;
-                    break;
-                case "yellow":
-                    this.game.playerYellow!.money += amount;
-                    break;
-                case "red":
-                    this.game.playerRed!.money += amount;
-                    break;
-                case "green":
-                    this.game.playerGreen!.money += amount;
-                    break;
-                default:
-                    break;
-            }
+            this.game.players.get(color)!.money += amount;
         },
         addProperty(property: any, propertyType: PropertyType, color: Color) {
-            switch (color) {
-                case "blue":
-                    switch (propertyType) {
-                        case "property":
-                            this.game.playerBlue!.cards.properties.push(property!)
-                            break;
-                        case "line":
-                            this.game.playerBlue!.cards.lines.push(property!)
-                            break;
-                        case "company":
-                            this.game.playerBlue!.cards.companies.push(property!)
-                            break;
-                    }
+            switch (propertyType) {
+                case "property":
+                    this.game.players.get(color)!.cards.properties.push(property!);
+                    this.game.cards.properties.splice(this.game.cards.properties.indexOf(property), 1);
                     break;
-                case "yellow":
-                    switch (propertyType) {
-                        case "property":
-                            this.game.playerBlue!.cards.properties.push(property!)
-                            break;
-                        case "line":
-                            this.game.playerBlue!.cards.lines.push(property!)
-                            break;
-                        case "company":
-                            this.game.playerBlue!.cards.companies.push(property!)
-                            break;
-                    }
+                case "line":
+                    this.game.players.get(color)!.cards.lines.push(property!);
+                    this.game.cards.lines.splice(this.game.cards.lines.indexOf(property), 1);
                     break;
-                case "red":
-                    switch (propertyType) {
-                        case "property":
-                            this.game.playerBlue!.cards.properties.push(property!)
-                            break;
-                        case "line":
-                            this.game.playerBlue!.cards.lines.push(property!)
-                            break;
-                        case "company":
-                            this.game.playerBlue!.cards.companies.push(property!)
-                            break;
-                    }
-                    break;
-                case "green":
-                    switch (propertyType) {
-                        case "property":
-                            this.game.playerBlue!.cards.properties.push(property!)
-                            break;
-                        case "line":
-                            this.game.playerBlue!.cards.lines.push(property!)
-                            break;
-                        case "company":
-                            this.game.playerBlue!.cards.companies.push(property!)
-                            break;
-                    }
-                    break;
-                default:
+                case "company":
+                    this.game.players.get(color)!.cards.companies.push(property!);
+                    this.game.cards.companies.splice(this.game.cards.companies.indexOf(property), 1);
                     break;
             }
         }

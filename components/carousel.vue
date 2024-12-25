@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type {Extra, Property} from "~/util/types";
+import type {CarouselEventData, Extra, Property, PropertyType} from "~/util/types";
 
 let props = defineProps<{
   companyList: Extra[],
@@ -7,8 +7,39 @@ let props = defineProps<{
   propertyList: Property[],
 }>()
 
+let emit = defineEmits(["send"])
+
+defineExpose({sendEventData})
+
 let currentListIndex: Ref<number> = ref(0);
 let currentIndex: Ref<number> = ref(0);
+
+function sendEventData() {
+  if (currentListIndex.value === 2) {
+    emit("send", {
+      currentIndex: currentIndex.value,
+      value: props.companyList[currentIndex.value],
+      type: "company" as PropertyType
+    } as CarouselEventData);
+    return;
+  }
+  if (currentListIndex.value === 1) {
+    emit("send", {
+      currentIndex: currentIndex.value,
+      value: props.lineList[currentIndex.value],
+      type: "line" as PropertyType
+    } as CarouselEventData);
+    return;
+  }
+  if (currentListIndex.value === 0) {
+    emit("send", {
+      currentIndex: currentIndex.value,
+      value: props.propertyList[currentIndex.value],
+      type: "property" as PropertyType
+    } as CarouselEventData);
+    return;
+  }
+}
 
 function prev() {
   if (currentIndex.value === 0) {
