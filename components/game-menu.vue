@@ -2,12 +2,10 @@
 
 import type {Color} from "~/util/types";
 
-function navigateToPlayer(color: Color) {
-  const router = useRouter();
+let emit = defineEmits(["clicked"])
 
-  router.push({
-    path: `/player/${color}`,
-  })
+function navigate(color: Color) {
+  emit("clicked", color);
 }
 
 </script>
@@ -15,10 +13,10 @@ function navigateToPlayer(color: Color) {
 <template>
   <div class="circle-container">
     <div class="circle">
-      <button @click="navigateToPlayer('blue')" class="btn top-btn"></button>
-      <button @click="navigateToPlayer('yellow')" class="btn left-btn"></button>
-      <button @click="navigateToPlayer('red')" class="btn right-btn"></button>
-      <button @click="navigateToPlayer('green')" class="btn bottom-btn"></button>
+      <button @click="navigate('blue')" class="btn top-btn"></button>
+      <button @click="navigate('yellow')" class="btn left-btn"></button>
+      <button @click="navigate('red')" class="btn right-btn"></button>
+      <button @click="navigate('green')" class="btn bottom-btn"></button>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
 
 import type {Color, Player} from "~/util/types";
 import {useGameStore} from "~/stores/gameStore";
-import {navigateToMainMenu} from "~/util/routing";
+import {navigateToChoosePlayerMenu, navigateToMainMenu} from "~/util/routing";
 
 let props = defineProps<{
   color: Color
@@ -37,7 +37,7 @@ function completedRound() {
       <div></div>
 
       <button @click="navigateToGetProperty()">Grundstück kaufen</button>
-      <button>Miete bezahlen</button>
+      <button @click="navigateToChoosePlayerMenu(color)">Miete bezahlen</button>
       <button>Haus bauen</button>
       <button>Hotel bauen</button>
 

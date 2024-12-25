@@ -91,9 +91,12 @@ function next() {
     <button @click="prev()" class="arrow left">&lt;</button>
 
     <div class="carousel-wrapper">
-      <CardsProperty v-if="currentListIndex == 0" :card="propertyList[currentIndex]"></CardsProperty>
-      <CardsCompany v-if="currentListIndex == 1" :card="lineList[currentIndex]"></CardsCompany>
-      <CardsLine v-if="currentListIndex == 2" :card="companyList[currentIndex]"></CardsLine>
+      <CardsProperty v-if="currentListIndex == 0 && currentIndex < propertyList.length"
+                     :card="propertyList[currentIndex]"></CardsProperty>
+      <CardsCompany v-if="currentListIndex == 1 && currentIndex < lineList.length"
+                    :card="lineList[currentIndex]"></CardsCompany>
+      <CardsLine v-if="currentListIndex == 2 && currentIndex < companyList.length"
+                 :card="companyList[currentIndex]"></CardsLine>
     </div>
 
     <button @click="next()" class="arrow right">&gt;</button>

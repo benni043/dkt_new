@@ -9,11 +9,12 @@ defineProps<{
 <template>
   <CardsBase color="default" :number="card.id" :header="card.type" :subheader="card.name">
     <template #top>
-      <CardBodyText :text="'Wer auf diesem Feld zu stehen kommt, hat dir die 5-fache,\n'+
-'          besitzt du auch das Feld 14 (Seilbahn) oder das Feld 34 (Fluglinie\n'+
-'          Wien-Venedig), die 10-fache, hast du beide Felder 14 und 34, die\n'+
-'          20-fache gewürfelte Punktezahl zu bezahlen'">
-      </CardBodyText>
+      <CardBodyText :text="'Besitzt du von den Verkehrslinien 8, 13, 18, 24 nur eine, erhältst du'"></CardBodyText>
+
+      <CardBodyPart :text="'an Fahrgeld'" :value="20"></CardBodyPart>
+      <CardBodyPart :text="'2 in Deinem Besitz'" :value="40"></CardBodyPart>
+      <CardBodyPart :text="'3 in Deinem Besitz'" :value="80"></CardBodyPart>
+      <CardBodyPart :text="'4 in Deinem Besitz'" :value="160"></CardBodyPart>
     </template>
     <template #bottom>
       <CardBodyPart :text="'Preis des Kraftwerks'" :value="160"></CardBodyPart>

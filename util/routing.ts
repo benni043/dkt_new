@@ -15,3 +15,27 @@ export function navigateToPlayerMenu(color: Color) {
         path: `/player/${color}`,
     })
 }
+
+export function navigateToPlayer(color: Color) {
+    const router = useRouter();
+
+    router.push({
+        path: `/player/${color}`,
+    })
+}
+
+export function navigateToChoosePlayerMenu(color: Color) {
+    const router = useRouter();
+
+    router.push({
+        path: `/player/${color}/pay-rent`,
+    })
+}
+
+export function navigateToPayRent(color: Color, other_color: Color) {
+    const router = useRouter();
+
+    router.push({
+        path: `/player/${color}/pay-rent/${other_color}`,
+    })
+}
